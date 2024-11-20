@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+
+  {% if categories or other_files %}
+    {% for category in categories %}
+      {% if category.files.all %}
+        <h4>{{ category.title }}</h4>
+        <div class="list">
+          {% for file in category.files.all %}
+          <p><a href="{{ file.file.url }}" download>{{ file.file_name }}</a></p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if other_files %}
+      <h4>Файлы без категории</h4>
+      <div class="list">
+        {% for file in other_files %}
+          <p><a href="{{ file.file.url }}" download>{{ file.file_name }}</a></p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <h3>Нет файлов</h3>
+  {% endif %}
+
+{% endblock %}

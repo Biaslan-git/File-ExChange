@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+  {% if message %}
+    <div class="alert alert-primary" role="alert">
+      Файл {{file.file_name}} был успешно добавлен
+    </div>
+  {% endif %}
+
+  <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token  %}
+    <p>
+      <label for="id_file">Ваш файл:</label>
+      <input id="id_file" type="file" class="form-control" name="file" required>
+    </p>
+    <p>
+      <label for="id_category">Название категории</label>
+      <input id="id_category" type="text" class="form-control" list="categories" name="category">
+      <datalist id="categories">
+        <option value="Категория">1243</option>
+        <option value="Катег">12</option>
+      </datalist>
+    </p>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+{% endblock %}
+
+
