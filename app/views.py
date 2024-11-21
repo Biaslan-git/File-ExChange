@@ -7,15 +7,16 @@ def main(request):
     return redirect('files')
 
 def upload_file(request):
+    categories = Category.objects.all()
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
             file = form.save()
-            return render(request, 'app/upload.html', {'file': file})
+            return render(request, 'app/upload.html', {'file': file, 'categories': categories})
     else:
         form = FileUploadForm()
 
-    return render(request, 'app/upload.html', {'form': form})
+    return render(request, 'app/upload.html', {'form': form, 'categories': categories})
 
 def files(request):
     categories = Category.objects.all()

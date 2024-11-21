@@ -17,8 +17,9 @@
       <label for="id_category">Название категории</label>
       <input id="id_category" type="text" class="form-control" list="categories" name="category">
       <datalist id="categories">
-        <option value="Категория">1243</option>
-        <option value="Катег">12</option>
+        {% for category in categories %}
+          <option value="{{ category.title }}">{{ category.title }}</option>
+        {% endfor %}
       </datalist>
     </p>
 
