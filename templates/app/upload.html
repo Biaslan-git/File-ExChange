@@ -1,9 +1,9 @@
 {% extends 'app/base.html' %}
 
 {% block body %}
-  {% if message %}
+  {% if file %}
     <div class="alert alert-primary" role="alert">
-      Файл {{file.file_name}} был успешно добавлен
+      Файл {{ file.file_name }} был успешно добавлен
     </div>
   {% endif %}
 
